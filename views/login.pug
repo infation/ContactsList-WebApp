@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        title Login page
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+        link(rel='stylesheet' type = 'text/css' href='/stylesheets/style.css')
+
+    body
+        nav.navbar.navbar-inverse
+            div.container-fluid
+                ul.nav.navbar-nav
+                    li
+                        a(href = "home" ) Home
+                    li.active
+                        a(href="mailer") Mailer
+                    li
+                        a(href="contacts") Contacts
+                ul.nav.navbar-nav.navbar-right
+                    li 
+                        a(href="login") 
+                            button.btn.btn-success.navbar-btn.btn-lg(id = "loginbtn") Login
+    
+        .container
+            .row
+                .col-lg-10.col-lg-offset-1
+                        form(action = "login", method = "post")
+                            .col-md-4
+                                .form-group
+                                    label Username
+                                    input.form-control(type="text" name="username" placeholder="Username")
+                            .col-md-4                            
+                                .form-group
+                                    label Password
+                                    input.form-control(type="password" name="password" placeholder="Password")
+                    
+                            .col-md-4
+                                    button.btn.btn-primary.btn-lg(type="submit") Submit

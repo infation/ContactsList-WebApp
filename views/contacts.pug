@@ -1,0 +1,62 @@
+doctype html
+html
+    head
+        title Contacts List
+        script(src="http://code.jquery.com/jquery-3.2.1.js")
+        script(type='text/javascript').                                                   
+            var contacts =!{JSON.stringify(contacts)};   
+        script(src='/javascripts/map.js')
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+        link(rel='stylesheet' type = 'text/css' href='/stylesheets/style.css')
+        //-style(type="text/css").
+            table, th, td {
+                border: 1px solid black;
+            }
+    body 
+        //-div#navigation_bar
+            button(onclick = "location.href = 'home'") Home
+            button(onclick = "location.href = 'mailer'") Mailer
+            button(onclick = "location.href = 'contacts'") Contacts
+        nav.navbar.navbar-inverse
+            div.container-fluid
+                ul.nav.navbar-nav
+                    li
+                        a(href = "home" ) Home
+                    li 
+                        a(href="mailer") Mailer
+                    li.active 
+                        a(href="contacts") Contacts
+                ul.nav.navbar-nav.navbar-right
+                    li 
+                        if user
+                            a(href="logout") 
+                                button.btn.btn-danger.navbar-btn.btn-lg(id = "loginbtn") Logout
+                        else
+                            a(href = "login")
+                                button.btn.btn-success.navbar-btn.btn-lg(id = "loginbtn") Login
+                            
+        table.table.table-bordered.table-hover.table-responsive
+            thead
+                tr 
+                    each val in ["Prefix", "First Name", "Last Name", "Street", "City", "State", "Zip", "Phone", "Email", "Contact By Phone", "Contact By Mail", "Contact By Email", "Latitude", "Longitude"]
+                        th #{val}
+            tbody
+                each contact in contacts
+                    .text-center
+                        tr
+                            each property in contact.contact
+                                td #{property}
+                            td
+                                form(action="update" method = "get")
+                                    input(type="hidden" name="_id" value=contact._id)
+                                    input.btn.btn-warning.btn-lg(type="submit" value="Edit")
+                            td
+                                form(action="contacts" method = "post")
+                                    input(type="hidden" name="_id" value=contact._id)
+                                    input.btn.btn-danger.btn-lg(type="submit" value="Delete")        
+
+        .text-center
+            button.btn.btn-success.btn-lg(onclick = "location.href = 'mailer'") + Add New Contact                            
+        div
+            script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLVicJg63qrPqHG7Nw5qifhIfSmVxGjWM")
+            div(id="map")

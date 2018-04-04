@@ -1,0 +1,157 @@
+doctype html
+html(lang="en")
+    head
+        title Submission form
+        script(src="http://code.jquery.com/jquery-3.2.1.js")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+        link(rel='stylesheet' type = 'text/css' href='/stylesheets/style.css')
+        script(src='/javascripts/home.js')
+    
+    body
+        nav.navbar.navbar-inverse
+            div.container-fluid
+                ul.nav.navbar-nav
+                    li.active 
+                        a(href = "home" ) Home
+                    li
+                        a(href="mailer") Mailer
+                    li
+                        a(href="contacts") Contacts
+                ul.nav.navbar-nav.navbar-right
+                    li 
+                        if user
+                            a(href="logout") 
+                                button.btn.btn-danger.navbar-btn.btn-lg(id = "loginbtn") Logout
+                        else
+                            a(href = "login")
+                                button.btn.btn-success.navbar-btn.btn-lg(id = "loginbtn") Login
+        #welcome
+            .container
+                .row
+                    .col-lg-10.col-lg-offset-1
+                            .text-center
+                                h1 FINAL PROJECT
+                                h2 CMPS369-01 WEB APPLICATIONS
+                                h3 Created by Stanislav Minev
+                                h4 12/18/2017
+
+
+//-doctype html
+//-html(lang="en")
+    head
+        title Submission form
+        script(src="http://code.jquery.com/jquery-3.2.1.js")
+        script(src='/javascripts/home.js')
+    
+    body
+        
+        div(id="navigation_bar")
+            button(onclick = "showHome()") Home
+            button(onclick = "showMailer()") Mailer
+            button(onclick = "showContacts()") Contacts
+        
+        section(id = "mailer_page")
+            form#form
+                //- Prefixes 
+                p.prefixes
+                    each val in ['Mr.', 'Mrs.', 'Ms.', 'Dr.']
+                        input(type = "radio"  name = "prefix" value = val checked)
+                        label #{val}
+                        
+
+                p.name
+                        label First Name:   
+                        input(type="text" name="first" required autofocus)
+                        label Last Name: 
+                        input(type="text" name="last" id="last" required)
+                
+                p.address
+                        label Street:
+                        input(type="text" name="street")
+                        label City:
+                        input(type="text" name="city")
+                        label State:
+                        select(name = "state")
+                            each state in ["NJ", "NY", "PA", "CT"]
+                                option #{state}  
+                
+                        label Zip:
+                        input(type="text" name="zip")
+
+                p.contactinfo
+                    label Phone: 
+                    input(type="text" name="phone" id="phone")
+                    label Email:
+                    input(type="text" name="email" id="email")
+        
+
+            
+                
+                p.contactby()
+                        label How may we contact you?
+                        input(type="checkbox" name="contactphone" checked)
+                        label Phone
+                        input(type="checkbox" name="contactmail" checked)
+                        label Mail         
+                        input(type="checkbox" name="contactemail" checked)
+                        label Email
+                
+                div
+                    button(onclick = "submitForm()") Submit
+                    
+        section(id = "submission_page")
+            div Your submission was succsessful.
+            div Thank You.
+            p
+                button(onclick = "showContacts()") Show Contacts
+        
+        section(id = "contacts_page")
+        
+        //-form(method="post")
+
+            //- Prefixes 
+            p.prefixes
+                each val in ['Mr.', 'Mrs.', 'Ms.', 'Dr.']
+                    input(type = "radio"  name = "prefix" value = val checked)
+                    label #{val}
+                    
+
+            p.name
+                    label First Name:   
+                    input(type="text" name="first" required autofocus)
+                    label Last Name: 
+                    input(type="text" name="last" id="last" required)
+            
+            p.address
+                    label Street:
+                    input(type="text" name="street")
+                    label City:
+                    input(type="text" name="city")
+                    label State:
+                    select(name = "state")
+                        each state in ["NJ", "NY", "PA", "CT"]
+                            option #{state}  
+              
+                    label Zip:
+                    input(type="text" name="zip")
+
+            p.contactinfo
+                label Phone: 
+                input(type="text" name="phone" id="phone")
+                label Email:
+                input(type="text" name="email" id="email")
+    
+
+         
+            
+            p.contactby
+                    label How may we contact you?
+                    input(type="checkbox" name="contactphone" checked)
+                    label Phone
+                    input(type="checkbox" name="contactmail" checked)
+                    label Mail         
+                    input(type="checkbox" name="contactemail" checked)
+                    label Email
+            
+            div
+                button(onclick = "submitForm()") Submit
